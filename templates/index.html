@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+
+
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+<div> Почтовый адрес нынешнего юзера такой -  {{ user.email }} </div>
+<div> Ты подписан на такие вот категории
+    {% for category in user.categories.all %}
+        <a  href ="{% url 'category_list' category.id %}">  {{ category }} </a>
+    {% endfor %}
+</div>
+
+<button> <a href="/news/logout">Выйти</a> </button>
+
+{% if is_not_authors %}
+<button> <a href="/news/upgrade/"> Хочу в Авторы!</a> </button>
+{% endif %}
+
+<img alt = "what?" src=”https://samplelib.com/lib/preview/jpeg/sample-birch-400x300.jpg”>
+
+<img alt="Qries" src="https://www.qries.com/images/banner_logo.png">
+{% endblock %}
+
